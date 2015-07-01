@@ -1,0 +1,32 @@
+<%= form_for(@raccoon) do |f| %>
+  <% if @raccoon.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@raccoon.errors.count, "error") %> prohibited this raccoon from being saved:</h2>
+
+      <ul>
+      <% @raccoon.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.select :claw_ferocity, (1..10).to_a, {:include_blank => 'Claw Ferocity'}, class: "form-control" %>
+  </div>
+  <div class="field">
+    <%= f.label :disposition %><br>
+    <%= f.text_field :disposition %>
+  </div>
+  <div class="field">
+    <%= f.label "Photo" %><br>
+    <%= f.file_field :avatar %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

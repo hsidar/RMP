@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+
+<div class="jumbotron">
+  <h1>Raccoon Metadata Project</h1>
+  <p>Collecting information on raccoons and the furniture they have accquired.</p>
+  <p><%= link_to "Learn More", about_path, class: "btn btn-primary btn-lg", role: "button" %></p>
+</div>
+
+<br>
+
+<div class="row">
+    <% @raccoons.each do |raccoon| %>
+      <div class="col-md-4">
+       <div class="panel panel-default">
+        <div class="panel-body sizer">
+          <%  if raccoon.avatar_file_name %>
+          <div class="raccoon-vatar card"><%= link_to (image_tag raccoon.avatar.url(:thumb)), raccoon, class: "img-responsive raccoon-time", remote: true %></a></div>
+          <% end %>
+          <div class="raccoon-deets">
+          <h2 data-toggle="tooltip" title="<%= raccoon.name %>"><%= raccoon.name %></h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class= "raccoon-fo">
+  <div class="panel panel-default placement">
+    <div class="panel-body">
+      <button class = "raccoon-off"><span class="glyphicon glyphicon-remove">CLOSE</span></button>
+      <div id = "inforaccoon"></div>
+    </div>
+  </div>
+</div>
