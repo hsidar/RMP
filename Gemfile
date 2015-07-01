@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 # Add avatars to database objects.
 gem "paperclip"
+gem 'aws-sdk-v1'
 # CSS bootstrap
 gem 'bootstrap-sass'
 # Secure login gem
