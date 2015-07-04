@@ -7,10 +7,10 @@ class RaccoonsController < ApplicationController
   def index
     @raccoons = Raccoon.all
   end
-  
+
   def about
   end
-  
+
 
   # GET /raccoons/new
   def new
@@ -66,7 +66,7 @@ class RaccoonsController < ApplicationController
     def set_raccoon
       @raccoon = Raccoon.find(params[:id])
     end
-    
+
     def set_furniture
       @furniture = Furniture.new
     end
