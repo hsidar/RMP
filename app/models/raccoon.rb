@@ -15,4 +15,8 @@ class Raccoon < ActiveRecord::Base
     avatar.url(:medium)
   end
 
+  def avatar_thumb
+    avatar.url(:thumb)
+  end
+
 end
