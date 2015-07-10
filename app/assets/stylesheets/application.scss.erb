@@ -1,17 +1,28 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+html, body {
+  width: 100%;
+  height: 100%;
+}
 
 body {
   background: url("<%= asset_path 'bg.png' %>") no-repeat;
-  background-size: cover;
+  background-size: 100% 150%;
   font-family: 'Prociono', serif;
+}
+
+h3[class^=alert] {
+  margin: 0;
+  padding: 5px;
+  text-align: center;
 }
 
 .navbar-default {
   background-color: #4f4f4f;
   border-color: #555555;
   border-radius: 0%;
+  margin-bottom: 0;
 
 }
 .navbar-default .navbar-brand {
@@ -74,6 +85,7 @@ body {
   text-align: center;
   background: rgba(255,255,255,0.8);
   top: 0;
+  margin-top: 0;
 }
 
 .raccoon-deets h2{
@@ -149,7 +161,6 @@ body > div.row > div > div {
 .raccoon-vatar {
   float: left;
 }
-
 
 .raccoon-off {
   position: absolute;

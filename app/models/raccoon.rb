@@ -1,6 +1,7 @@
 class Raccoon < ActiveRecord::Base
 
   has_many :furnitures
+  belongs_to :user
 
   validates :name, uniqueness: true
   validates :name, presence: true

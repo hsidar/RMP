@@ -1,5 +1,8 @@
-<p id="notice"><%= notice %></p>
 
+
+<% if flash[:notice] %>
+  <h3 class= "<%= flash[:notice]['class'] %>"><%= flash[:notice]['body'] %></h3>
+<% end %>
 
 <div class="jumbotron">
   <h1>Raccoon Metadata Project</h1>
