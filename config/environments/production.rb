@@ -77,6 +77,9 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+
+  config.action_mailer.default_url_options = { :host => 'raccoon-metadata-project.herokuapp.com' }
+
     ActionMailer::Base.delivery_method = :smtp
     ActionMailer::Base.smtp_settings = {
      :tls => true,
@@ -84,8 +87,8 @@ Rails.application.configure do
      :port => 587,
      :domain => "gmail.com",
      :authentication => :login,
-     :user_name => ENV['gmail_username'],
-     :password => ENV['gmail_password']
+     :user_name => ENV['GMAIL_USERNAME'],
+     :password => ENV['GMAIL_PASSWORD']
    }
 
   # paperclip defaults for AWS S3
