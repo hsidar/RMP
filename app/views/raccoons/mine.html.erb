@@ -1,23 +1,15 @@
 
-
-<div class="jumbotron">
-  <h1>Raccoon Metadata Project</h1>
-  <p>Collecting information on raccoons and the furniture they have accquired.</p>
-  <p><%= link_to "Learn More", about_path, class: "btn btn-default btn-lg", role: "button" %></p>
-</div>
-
-<br>
-
 <div class="row">
     <% @raccoons.each do |raccoon| %>
-      <div class="col-md-4">
+      <div class="col-md-12">
        <div class="panel panel-default">
         <div class="panel-body sizer">
           <%  if raccoon.avatar_file_name %>
-          <div class="raccoon-vatar card"><%= link_to (image_tag raccoon.avatar.url(:thumb)), raccoon, class: "img-responsive raccoon-time", remote: true %></a></div>
+          <div class="raccoon-vatar card"><%= link_to (image_tag raccoon.avatar.url(:thumb)), edit_raccoon_path(raccoon), class: "img-responsive raccoon-time", remote: true %></a></div>
           <% end %>
           <div class="raccoon-deets">
           <h2 data-toggle="tooltip" title="<%= raccoon.name %>"><%= raccoon.name %></h2>
+          <%= link_to "Euthanize", raccoon_path(raccoon), method: :delete,data: {confirm: "Are you sure?"}, class: "btn btn-primary btn-lg", role: "button" %>
           </div>
         </div>
       </div>

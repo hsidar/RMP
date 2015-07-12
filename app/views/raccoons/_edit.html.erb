@@ -1,0 +1,75 @@
+<div class= "raccoon-vatar">
+  <%= image_tag @raccoon.avatar.url(:medium) %>
+</div>
+
+<div class="raccoon-stuff">
+
+  <%= form_for @raccoon, method: 'put', html: {class: 'new_raccoon_form'} do |f| %>
+  <div class="form-group">
+    <%= f.text_field :name, placeholder: @raccoon.name %>
+  </div>
+  <div class="form-group">
+    <%= f.select :claw_ferocity, (1..10).to_a, {:include_blank => 'Claw Ferocity'} %>
+  </div>
+  <div class="form-group">
+    <%= f.text_field :disposition, placeholder: @raccoon.disposition %>
+  </div>
+  <div class="form-group new_raccoon_form">
+    <%= f.label :Photo %>
+    <br/>
+    <%= f.file_field :avatar %>
+  </div>
+  <div class="btn btn-default">
+    <%= f.submit "Edit" %>
+  </div>
+
+  <% end %>
+
+  <h3>Furniture accquired:</h3>
+</div>
+
+<% if @raccoon.furnitures.length == 0 %>
+  <p>Naught.</p>
+<% else %>
+  <% @raccoon.furnitures.each do |furniture| %>
+    <p><%= furniture.style %> <%= furniture.kind %> <%= link_to 'Destroy', furniture, method: :delete, remote: true %></p>
+  <% end %>
+<% end %>
+
+<% if current_user.id == @raccoon.user_id %>
+
+  <button class="btn btn-primary furniture"><span class="glyphicon glyphicon-plus"></span> Add Furniture </button>
+
+  <div class="furniture-form" style="display:none;">
+
+    <%= form_for @furniture, remote: true do |f| %>
+
+      <% if @furniture.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@furniture.errors.count, "error") %> prohibited this furniture from being saved:</h2>
+          <ul>
+            <% @furniture.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="field">
+        <%= f.label :style %><br>
+        <%= f.text_field :style %>
+      </div>
+      <div class="field">
+        <%= f.label :kind %><br>
+        <%= f.text_field :kind %>
+      </div>
+      <div class="field" style="display:none;">
+        <%= f.label :raccoon_id %><br>
+        <%= f.text_field :raccoon_id, value: @raccoon.id %>
+      </div>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

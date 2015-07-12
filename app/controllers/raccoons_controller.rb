@@ -1,6 +1,6 @@
 class RaccoonsController < ApplicationController
   before_action :set_raccoon, only: [:show, :edit, :update, :destroy]
-  before_action :set_furniture, only: [:show]
+  before_action :set_furniture, only: [:show, :edit]
   before_filter :authenticate_user!, except: [:index, :show, :about]
 
   # GET /raccoons
@@ -10,6 +10,15 @@ class RaccoonsController < ApplicationController
   end
 
   def about
+  end
+
+  def mine
+    if Raccoon.where(user_id: current_user.id).length == 0
+      flash[:notice] = { class: 'alert-warning', body: 'You have not documented anything.'}
+      redirect_to new_raccoon_path
+    else
+      @raccoons = Raccoon.where(user_id: current_user.id)
+    end
   end
 
 
@@ -51,7 +60,7 @@ class RaccoonsController < ApplicationController
   def update
     respond_to do |format|
       if @raccoon.update(raccoon_params)
-        format.html { redirect_to @raccoon, flash[:notice] = { class: 'alert-success', body: 'Raccoon updated! ... That was weird.' } }
+        format.html { redirect_to '/mine', flash[:notice] = { class: 'alert-success', body: 'Raccoon updated! ... That was weird.' } }
         format.json { render :show, status: :ok, location: @raccoon }
       else
         format.html { render :edit }
@@ -63,9 +72,15 @@ class RaccoonsController < ApplicationController
   # DELETE /raccoons/1
   # DELETE /raccoons/1.json
   def destroy
+
+    user = User.find(current_user.id)
+    if user.raccoon_limit > 0
+      user.update_attribute(:raccoon_limit, (user.raccoon_limit - 1))
+    end
+
     @raccoon.destroy
     respond_to do |format|
-      format.html { redirect_to raccoons_url, notice: 'Raccoon was successfully destroyed.' }
+      format.html { redirect_to '/mine', flash[:notice] = { class: 'alert-danger', body: 'Raccoon was successfully destroyed.' } }
       format.json { head :no_content }
     end
   end

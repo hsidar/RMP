@@ -13,22 +13,19 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
 ////
 $(document).ready(function(){
 
+  $("body").on("click", ".raccoon-off", function(){
 
-  $(".raccoon-off").click(function(){
-
-    $('.placement').slideUp(350, function(){
-    $(".furniture").css({'display' : ''});
-    $(".raccoon-fo").css({'z-index' : '-5', 'opacity' : '0'});
-     });
-  });
+      $('.placement').slideUp(350, function(){
+      $(".raccoon-fo").css({'z-index' : '-5', 'opacity' : '0'});
+       });
+    });
 
   $("body").on("click", ".furniture", function(){
-    $('#furniture-form').slideDown(350);
+    $('.furniture-form').slideDown(350);
     $(".furniture").css({'display' : 'none'});
    });
 

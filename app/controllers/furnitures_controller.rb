@@ -47,11 +47,9 @@ class FurnituresController < ApplicationController
   # DELETE /furnitures/1
   # DELETE /furnitures/1.json
   def destroy
+    @raccoon = Raccoon.find(@furniture.raccoon_id)
+    @furnitures = @raccoon.furnitures.all
     @furniture.destroy
-    respond_to do |format|
-      format.html { redirect_to furnitures_url, notice: 'Furniture was successfully destroyed.' }
-      format.json { head :no_content }
-    end
   end
 
   private

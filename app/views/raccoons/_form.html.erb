@@ -1,8 +1,11 @@
-<%= form_for(@raccoon) do |f| %>
+<div class="new_raccoon_form">
+
+<%= form_for @raccoon do |f| %>
+<h2>New Raccoon</h2>
+<br>
   <% if @raccoon.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@raccoon.errors.count, "error") %> prohibited this raccoon from being saved:</h2>
-
       <ul>
       <% @raccoon.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -11,25 +14,26 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="form-group">
+    <%= f.text_field :name, placeholder: 'Name' %>
   </div>
-  <div class="field">
-    <%= f.select :claw_ferocity, (1..10).to_a, {:include_blank => 'Claw Ferocity'}, class: "form-control" %>
+  <div class="form-group">
+    <%= f.select :claw_ferocity, (1..10).to_a, {:include_blank => 'Claw Ferocity'} %>
   </div>
-  <div class="field">
-    <%= f.label :disposition %><br>
-    <%= f.text_field :disposition %>
+  <div class="form-group">
+    <%= f.text_field :disposition, placeholder: 'Disposition' %>
   </div>
-  <div class="field">
-    <%= f.label "Photo" %><br>
+  <div class="form-group">
+    <%= f.label :Photo %>
+    <br/>
     <%= f.file_field :avatar %>
   </div>
   <div class="field">
   <%= f.hidden_field :user_id, value: current_user.id %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <%= f.submit "Document", class: "btn btn-large btn-default"%>
+  <br/>
+  <br/>
+  <%= link_to 'Back', raccoons_path %>
 <% end %>
+</div>
