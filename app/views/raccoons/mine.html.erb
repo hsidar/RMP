@@ -1,5 +1,5 @@
 
-<div class="row">
+<div class="row mine-space">
     <% @raccoons.each do |raccoon| %>
       <div class="col-md-12">
        <div class="panel panel-default">
@@ -8,8 +8,8 @@
           <div class="raccoon-vatar card"><%= link_to (image_tag raccoon.avatar.url(:thumb)), edit_raccoon_path(raccoon), class: "img-responsive raccoon-time", remote: true %></a></div>
           <% end %>
           <div class="raccoon-deets">
-          <h2 data-toggle="tooltip" title="<%= raccoon.name %>"><%= raccoon.name %></h2>
-          <%= link_to "Euthanize", raccoon_path(raccoon), method: :delete,data: {confirm: "Are you sure?"}, class: "btn btn-primary btn-lg", role: "button" %>
+          <h2 data-toggle="tooltip" title="<%= raccoon.name %>"><%= link_to raccoon.name, edit_raccoon_path(raccoon), remote: true %></h2>
+          <%= link_to "Euthanize", raccoon_path(raccoon), method: :delete,data: {confirm: "Are you sure?"}, class: "btn btn-danger btn-lg", role: "button" %>
           </div>
         </div>
       </div>

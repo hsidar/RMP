@@ -1,18 +1,24 @@
-<div class= "raccoon-vatar">
-  <%= image_tag @raccoon.avatar.url(:medium) %>
-</div>
+<div class = "row">
+  <div class="col-span-6">
+    <div class= "raccoon-vatar">
+      <%= image_tag @raccoon.avatar.url(:medium) %>
+    </div>
+  </div>
 
-<div class="raccoon-stuff">
-  <h2><%= @raccoon.name %></h2>
-  <p>Claw Ferocity: <%= @raccoon.claw_ferocity %></p>
-  <p>Disposition: <%= @raccoon.disposition %></p>
-  <h3>Furniture accquired:</h3>
-</div>
+  <div class="col-span-6">
+    <div class="raccoon-stuff">
+      <h2><%= @raccoon.name %></h2>
+      <p>Claw Ferocity: <%= @raccoon.claw_ferocity %></p>
+      <p>Disposition: <%= @raccoon.disposition %></p>
+      <h3>Furniture accquired:</h3>
+    </div>
 
-<% if @raccoon.furnitures.length == 0 %>
-  <p>Naught.</p>
-<% else %>
-  <% @raccoon.furnitures.each do |furniture| %>
-    <p><%= furniture.style %> <%= furniture.kind %></p>
-  <% end %>
-<% end %>
+    <% if @raccoon.furnitures.length == 0 %>
+      <p>Naught.</p>
+    <% else %>
+      <% @raccoon.furnitures.each do |furniture| %>
+        <p><%= furniture.style %> <%= furniture.kind %></p>
+      <% end %>
+    <% end %>
+  </div>
+</div>

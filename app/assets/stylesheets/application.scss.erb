@@ -112,6 +112,11 @@ body > div.row > div > div {
   -webkit-transition: opacity .25s ease-in-out;
 }
 
+.raccoon-deets a {
+  color: black;
+  text-decoration: none;
+}
+
 .new_raccoon_form {
   text-align: center;
   color: white;
@@ -135,8 +140,30 @@ body > div.row > div > div {
 
 .new_raccoon_form input[type="file"] {
   display:inline;
-padding-left: 5%;
-color:white;
+  padding-left: 5%;
+  color:white;
+}
+
+.edit_file_field input[type="file"] {
+  text-align: center;
+  display:inline;
+  padding-left: 5%;
+}
+
+.about_raccoon_page input[type="file"]{
+  padding: 30px;
+  font-size: 20px;
+  color: black;
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.about_raccoon_page h1 {
+  margin-top: 0;
+  padding: 10px;
+  text-align: center;
 }
 
 
@@ -154,10 +181,15 @@ color:white;
 //  transform: translate(-50%, -50%);
 }
 
-.sizer {
+.furniture {
 }
 
-.furniture {
+.mine-space {
+
+}
+
+.mine-space div:nth-child(2) {
+  padding: 0 25% 0 25%;
 }
 
 .raccoon-vatar {
@@ -167,10 +199,8 @@ color:white;
 .raccoon-off {
   position: absolute;
   top: 0;
-  left: 0;
-  margin: 15px;
-  padding: 0;
-  vertical-align: text-top;
+  right: 0;
+  margin: 5px 20px auto;
   border: none;
   background: none;
 }

@@ -17,7 +17,7 @@
           <div class="raccoon-vatar card"><%= link_to (image_tag raccoon.avatar.url(:thumb)), raccoon, class: "img-responsive raccoon-time", remote: true %></a></div>
           <% end %>
           <div class="raccoon-deets">
-          <h2 data-toggle="tooltip" title="<%= raccoon.name %>"><%= raccoon.name %></h2>
+            <h2 data-toggle="tooltip" title="<%= raccoon.name %>"><%= link_to raccoon.name, raccoon, remote: true %></h2>
           </div>
         </div>
       </div>
