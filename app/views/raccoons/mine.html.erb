@@ -1,15 +1,14 @@
 
-<div class="row mine-space">
+<div class="row">
     <% @raccoons.each do |raccoon| %>
-      <div class="col-md-12">
+      <div class="col-md-12 mine-space">
        <div class="panel panel-default">
         <div class="panel-body sizer">
           <%  if raccoon.avatar_file_name %>
           <div class="raccoon-vatar card"><%= link_to (image_tag raccoon.avatar.url(:thumb)), edit_raccoon_path(raccoon), class: "img-responsive raccoon-time", remote: true %></a></div>
           <% end %>
           <div class="raccoon-deets">
-          <h2 data-toggle="tooltip" title="<%= raccoon.name %>"><%= link_to raccoon.name, edit_raccoon_path(raccoon), remote: true %></h2>
-          <%= link_to "Euthanize", raccoon_path(raccoon), method: :delete,data: {confirm: "Are you sure?"}, class: "btn btn-danger btn-lg", role: "button" %>
+          <h2 data-toggle="tooltip" title="<%= raccoon.name %>"><%= link_to raccoon.name, edit_raccoon_path(raccoon), remote: true %><%= link_to "Euthanize", raccoon_path(raccoon), method: :delete,data: {confirm: "Are you sure?"}, class: "btn btn-danger btn-lg pull-right", role: "button" %></h2>
           </div>
         </div>
       </div>
