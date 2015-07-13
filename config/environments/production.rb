@@ -82,14 +82,14 @@ Rails.application.configure do
 
     ActionMailer::Base.delivery_method = :smtp
     ActionMailer::Base.smtp_settings = {
-     :tls => true,
-     :address => "smtp.gmail.com",
-     :port => 587,
-     :domain => "gmail.com",
-     :authentication => :login,
-     :user_name => ENV['GMAIL_USERNAME'],
-     :password => ENV['GMAIL_PASSWORD']
-   }
+      :address        => 'smtp.sendgrid.net',
+      :port           => '587',
+      :authentication => :plain,
+      :user_name      => ENV['SENDGRID_USERNAME'],
+      :password       => ENV['SENDGRID_PASSWORD'],
+      :domain         => 'heroku.com',
+      :enable_starttls_auto => true
+    }
 
   # paperclip defaults for AWS S3
   config.paperclip_defaults = {
