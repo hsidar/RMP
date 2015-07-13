@@ -14,7 +14,7 @@ class RaccoonsController < ApplicationController
 
   def mine
     if Raccoon.where(user_id: current_user.id).length == 0
-      flash[:notice] = { class: 'alert-warning', body: 'You have not documented anything.'}
+      flash[:warning] = 'You have not documented anything.'
       redirect_to new_raccoon_path
     else
       @raccoons = Raccoon.where(user_id: current_user.id)
@@ -25,7 +25,7 @@ class RaccoonsController < ApplicationController
   # GET /raccoons/new
   def new
     if current_user.raccoon_limit >= 3
-      flash[:notice] = { class: 'alert-danger', body: 'Raccoon limit reached. Manage your raccoon data from the "Raccoon Data Management Panel".' }
+      flash[:danger] = 'Raccoon limit reached. Manage your raccoon data from the "Raccoon Data Management Panel".'
       redirect_to root_path
     end
     @raccoon = Raccoon.new
@@ -39,18 +39,24 @@ class RaccoonsController < ApplicationController
   # POST /raccoons.json
   def create
 
-    user = User.find(current_user.id)
-    user.update_attribute(:raccoon_limit, (user.raccoon_limit + 1))
+    if current_user.raccoon_limit >= 3
+      flash[:danger] = 'Raccoon limit reached. Manage your raccoon data from the "Raccoon Data Management Panel".'
+      redirect_to root_path
+    else
+      user = User.find(current_user.id)
+      user.update_attribute(:raccoon_limit, (user.raccoon_limit + 1))
 
-    @raccoon = Raccoon.new(raccoon_params)
+      @raccoon = Raccoon.new(raccoon_params)
 
-    respond_to do |format|
-      if @raccoon.save
-        format.html { redirect_to root_path, flash[:notice] = { class: 'alert-success', body: 'Raccoon documented! Thanks for being one of the good guys!' } }
-        format.json { render :show, status: :created, location: @raccoon }
-      else
-        format.html { render :new }
-        format.json { render json: @raccoon.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @raccoon.save
+          flash[:success] = 'Raccoon documented! Thanks for being one of the good guys!'
+          format.html { redirect_to root_path }
+          format.json { render :show, status: :created, location: @raccoon }
+        else
+          format.html { render :new }
+          format.json { render json: @raccoon.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -60,7 +66,8 @@ class RaccoonsController < ApplicationController
   def update
     respond_to do |format|
       if @raccoon.update(raccoon_params)
-        format.html { redirect_to '/mine', flash[:notice] = { class: 'alert-success', body: 'Raccoon updated! ... That was weird.' } }
+        flash["success"] = 'Raccoon updated! ... That was weird.'
+        format.html { redirect_to '/mine' }
         format.json { render :show, status: :ok, location: @raccoon }
       else
         format.html { render :edit }

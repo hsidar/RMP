@@ -45,9 +45,7 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-<% if flash[:notice] %>
-  <h3 class= "<%= flash[:notice]['class'] %>"><%= flash[:notice]['body'] %></h3>
-<% end %>
+<%= render 'layouts/messages' %>
 
 <%= yield %>
 
