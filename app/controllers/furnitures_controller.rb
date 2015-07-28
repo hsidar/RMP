@@ -28,6 +28,7 @@ class FurnituresController < ApplicationController
   def create
     @furniture  = Furniture.create(furniture_params)
     @raccoon = Raccoon.find(@furniture.raccoon_id)
+    @furniture = Furniture.new
   end
 
   # PATCH/PUT /furnitures/1
@@ -35,7 +36,7 @@ class FurnituresController < ApplicationController
   def update
     respond_to do |format|
       if @furniture.update(furniture_params)
-        format.html { redirect_to @furniture, notice: 'Furniture was successfully updated.' }
+        format.html { redirect_to @furniture}
         format.json { render :show, status: :ok, location: @furniture }
       else
         format.html { render :edit }
@@ -50,6 +51,7 @@ class FurnituresController < ApplicationController
     @raccoon = Raccoon.find(@furniture.raccoon_id)
     @furnitures = @raccoon.furnitures.all
     @furniture.destroy
+    @furniture = Furniture.new
   end
 
   private
