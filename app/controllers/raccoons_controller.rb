@@ -13,7 +13,10 @@ class RaccoonsController < ApplicationController
   end
 
   def mine
-    if Raccoon.where(user_id: current_user.id).length == 0
+    
+    if current_user.try(:admin?)
+      @raccoons = Raccoon.all    
+    elsif Raccoon.where(user_id: current_user.id).length == 0
       flash[:warning] = 'You have not documented anything.'
       redirect_to new_raccoon_path
     else
