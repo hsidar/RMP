@@ -46,8 +46,10 @@ class RaccoonsController < ApplicationController
       flash[:danger] = 'Raccoon limit reached. Manage your raccoon data from the "Raccoon Data Management Panel".'
       redirect_to root_path
     else
-      user = User.find(current_user.id)
-      user.update_attribute(:raccoon_limit, (user.raccoon_limit + 1))
+      if !current_user.admin?
+        user = User.find(current_user.id)
+        user.update_attribute(:raccoon_limit, (user.raccoon_limit + 1))
+      end
 
       @raccoon = Raccoon.new(raccoon_params)
 
