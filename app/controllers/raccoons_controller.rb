@@ -55,6 +55,7 @@ class RaccoonsController < ApplicationController
 
       respond_to do |format|
         if @raccoon.save
+          RaccoonMailer.documentated(current_user).deliver_later
           flash[:success] = 'Raccoon documented! Thanks for being one of the good guys!'
           format.html { redirect_to root_path }
           format.json { render :show, status: :created, location: @raccoon }

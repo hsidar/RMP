@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>You have documented a raccoon!!</h1>
+    <%= image_tag @raccoon.avatar.url(:thumb) %>
+    <h2><%= @raccoon.name %></h2>
+    <p>Claw Ferocity: <%= @raccoon.claw_ferocity %></p>
+    <p>Disposition: <%= @raccoon.disposition %></p>
+    <a href="#">Now go give it some stuff!!</a>
+  </body>
+</html>
