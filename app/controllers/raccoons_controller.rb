@@ -93,7 +93,8 @@ class RaccoonsController < ApplicationController
 
     @raccoon.destroy
     respond_to do |format|
-      format.html { redirect_to '/mine', flash[:notice] = { class: 'alert-danger', body: 'Raccoon was successfully destroyed.' } }
+      flash[:danger] ='Raccoon was successfully destroyed.'
+      format.html { redirect_to '/mine' }
       format.json { head :no_content }
     end
   end
