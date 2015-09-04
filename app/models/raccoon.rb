@@ -9,11 +9,11 @@ class Raccoon < ActiveRecord::Base
   validates :disposition, presence: true
 
 
-  has_attached_file :avatar, :styles => { :medium => "500x500>", :thumb => "100x100#" }, :default_url => "/images/:style/missing.png"
+  has_attached_file :avatar, :styles => { :medium => "500x500>", :mediumAPI => "500x500#", :thumb => "100x100#" }, :default_url => "/images/:style/missing.png"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
   def avatar_url
-    avatar.url(:medium)
+    avatar.url(:mediumAPI)
   end
 
   def avatar_thumb
